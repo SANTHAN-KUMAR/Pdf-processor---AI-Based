@@ -264,25 +264,6 @@ pip install -r requirements.txt
 - Tune similarity thresholds in post-processing
 - Adjust font size percentile thresholds
 
-## 📊 Benchmarks
-
-Tested on diverse document types:
-
-| Document Type | Pages | Processing Time | F1-Score | Title Accuracy |
-|---------------|-------|----------------|----------|----------------|
-| Academic Papers | 10-20 | 2-4s | 0.85 | 0.92 |
-| Technical Manuals | 30-50 | 6-10s | 0.78 | 0.88 |
-| Business Reports | 15-25 | 3-5s | 0.82 | 0.90 |
-| Mixed Layout | 20-40 | 4-8s | 0.75 | 0.85 |
-
-## 🤝 Contributing
-
-### Adding New Features
-
-1. **Fork repository** and create feature branch
-2. **Implement changes** with comprehensive tests
-3. **Update documentation** and examples
-4. **Submit pull request** with detailed description
 
 ### Training Data Guidelines
 
@@ -309,14 +290,7 @@ MIT License - see LICENSE file for details.
 - [ ] Table of contents detection and linking
 - [ ] Multi-column layout handling
 - [ ] Figure/table caption extraction
-- [ ] Cross-reference resolution
-
-### Version 2.1 (Future)
-- [ ] Real-time processing API
-- [ ] Batch processing optimizations
-- [ ] Custom model fine-tuning interface
-- [ ] Integration with document management systems
-
+- [ ] Cross-reference resolutio
 ## 🔗 Related Projects
 
 - [Adobe PDF Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) - For frontend integration
