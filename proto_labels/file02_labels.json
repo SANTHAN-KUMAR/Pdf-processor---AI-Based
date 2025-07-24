@@ -1,0 +1,16 @@
+{
+    "pdf": "file02.pdf",
+    "labeled_lines": [
+        { "text": "Foundation Level Extensions", "label": "H1" },
+        { "text": "2. Introduction to Foundation Level Agile Tester Extension", "label": "H1" },
+        { "text": "2.1 Intended Audience", "label": "H2" },
+        { "text": "2.4 Entry Requirements", "label": "H2" },
+        { "text": "3.1 Business Outcomes", "label": "H1" },
+        { "text": "Chapter 1: Agile Software Development", "label": "H3" },
+        { "text": "4.1 Trademarks", "label": "H2" },
+        { "text": "18 JUNE 2013", "label": "BODY" },
+        { "text": "Version 2014", "label": "BODY" },
+        { "text": "Copyright © International Software Testing Qualifications Board (hereinafter called ISTQB®).", "label": "BODY" },
+        { "text": "This document was produced by a team from the International Software Testing Qualifications Board Foundation Level Working Group.", "label": "BODY" }
+    ]
+}

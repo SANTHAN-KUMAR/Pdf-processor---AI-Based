@@ -1,0 +1,129 @@
+{
+    "pdf": "sample_document.pdf",
+    "labeled_lines": [
+      {
+        "text": "1. Introduction to the Foundation Level Extensions",
+        "label": "H1"
+      },
+      {
+        "text": "2. Introduction to Foundation Level Agile Tester Extension",
+        "label": "H1"
+      },
+      {
+        "text": "3. Overview of the Foundation Level Extension – Agile Tester Syllabus",
+        "label": "H1"
+      },
+      {
+        "text": "4. References",
+        "label": "H1"
+      },
+      {
+        "text": "2.1 Intended Audience",
+        "label": "H2"
+      },
+      {
+        "text": "2.2 Career Paths for Testers",
+        "label": "H2"
+      },
+      {
+        "text": "2.3 Learning Objectives",
+        "label": "H2"
+      },
+      {
+        "text": "2.4 Entry Requirements",
+        "label": "H2"
+      },
+      {
+        "text": "2.5 Structure and Course Duration",
+        "label": "H2"
+      },
+      {
+        "text": "2.6 Keeping It Current",
+        "label": "H2"
+      },
+      {
+        "text": "3.1 Business Outcomes",
+        "label": "H2"
+      },
+      {
+        "text": "3.2 Content",
+        "label": "H2"
+      },
+      {
+        "text": "4.1 Trademarks",
+        "label": "H2"
+      },
+      {
+        "text": "4.2 Documents and Web Sites",
+        "label": "H2"
+      },
+      {
+        "text": "Chapter 1: Agile Software Development",
+        "label": "H3"
+      },
+      {
+        "text": "Chapter 2: Fundamental Agile Testing Principles, Practices, and Processes",
+        "label": "H3"
+      },
+      {
+        "text": "Chapter 3: Agile Testing Methods, Techniques, and Tools",
+        "label": "H3"
+      },
+      {
+        "text": "This document may be copied in its entirety, or extracts made, if the source is acknowledged.",
+        "label": "BODY"
+      },
+      {
+        "text": "The certification for Foundation Level Extension – Agile Tester is designed for professionals who are working within Agile environments.",
+        "label": "BODY"
+      },
+      {
+        "text": "18 JUNE 2013",
+        "label": "BODY"
+      },
+      {
+        "text": "31 MAY 2014",
+        "label": "BODY"
+      },
+      {
+        "text": "Version 2014",
+        "label": "BODY"
+      },
+      {
+        "text": "Page 5 of 12",
+        "label": "BODY"
+      },
+      {
+        "text": "© International Software Testing Qualifications Board",
+        "label": "BODY"
+      },
+      {
+        "text": "The software industry changes rapidly. To deal with these changes and to provide the stakeholders with access to relevant and current information, the ISTQB working groups have created links on the www.istqb.org web site which refer to supporting documents, changes to standards and new occurrences in the industry.",
+        "label": "BODY"
+      },
+      {
+        "text": "In general, the Foundation Level syllabus is examinable at a K1 level, i.e., the candidate will recognize, remember and recall terms and concepts stated in the Foundation Level syllabus.",
+        "label": "BODY"
+      },
+      {
+        "text": "Building on the Foundation Level, the Agile Tester Extension supports the definition of career paths for professional testers.",
+        "label": "BODY"
+      },
+      {
+        "text": "The tester should remember the basic concept of Agile software development based on the Agile Manifesto.",
+        "label": "BODY"
+      },
+      {
+        "text": "The tester should understand the advantages of the whole-team approach and the benefits of early and frequent feedback.",
+        "label": "BODY"
+      },
+      {
+        "text": "The tester should be able to describe the differences between testing activities in Agile projects and non-Agile projects.",
+        "label": "BODY"
+      },
+      {
+        "text": "The tester should be able to recall the concepts of test-driven development, acceptance test-driven development, and behavior-driven development.",
+        "label": "BODY"
+      }
+    ]
+  }

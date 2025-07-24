@@ -1,0 +1,16 @@
+{
+    "pdf": "file03.pdf",
+    "labeled_lines": [
+        { "text": "The Business Plan to be Developed", "label": "H1" },
+        { "text": "Evaluation and Awarding of Contract", "label": "H1" },
+        { "text": "Appendix A: ODL Envisioned Phases & Funding", "label": "H1" },
+        { "text": "ODL Steering Committee Terms of Reference", "label": "H2" },
+        { "text": "3.1 Schools:", "label": "H2" },
+        { "text": "9.3 Conflict of Interest:", "label": "H2" },
+        { "text": "Appendix C:", "label": "H1" },
+        { "text": "RFP: To Develop the Ontario Digital Library Business Plan", "label": "BODY" },
+        { "text": "The purpose of this Request for Proposal (RFP) is to invite firms and/or consultants to present a proposal for developing the business plan for the Ontario Digital Library (ODL).", "label": "BODY" },
+        { "text": "Connecting Ontarians!", "label": "BODY" },
+        { "text": "Timeline:", "label": "BODY" }
+    ]
+}
