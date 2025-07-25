@@ -1,27 +1,17 @@
-FROM --platform=linux/amd64 python:3.10-slim
+FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements first for better caching
+# Install required packages
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy source code and models
-COPY models/ models/
-COPY src/ src/
-COPY proto_labels/ proto_labels/
+# Copy application code
+COPY *.py /app/
 
-# Set environment variables
-ENV PYTHONPATH=/app/src
-ENV PYTHONUNBUFFERED=1
+# Create input and output directories
+RUN mkdir -p /app/input
+RUN mkdir -p /app/output
 
-# Create input/output directories
-RUN mkdir -p /app/input /app/output
-
-ENTRYPOINT ["python", "src/pdf_outline.py"]
+# Set the command to run the application
+CMD ["python", "pdf_extractor.py", "/app/input", "/app/output"]
