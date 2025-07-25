@@ -17,6 +17,163 @@ This system combines:
 - ✅ Production-grade code with comprehensive error handling
 - ✅ Extensive validation and metrics
 
+
+```bash
+(adobe) santhankumar@fedora:~/Desktop/notebooks/Adobe Hackathon$ python validate_output.py
+Validating extracted PDF structure against gold standard...
+
+=== Detailed Evaluation Results ===
+
+--- File: file01.json ---
+  Title:
+    - Match: ✗ (similarity: 0.00)
+  Headings:
+    - Ground truth:     0
+    - Extracted:        5
+    - Correctly found:  0
+    - False positives:  5
+    - False negatives:  0
+  Metrics:
+    - Precision: 0.00%
+    - Recall:    0.00%
+    - F1-Score:  0.00%
+  Insights:
+    - Title was not detected correctly
+    - Too many false positives: 5 detected vs 0 missed
+  Example false positives:
+  • "Application form for grant of LTC advance" (level: 3)
+  • "PAY + SI + NPA" (level: 1)
+  • "10." (level: 1)
+  Recommendations:
+    - Increase heading score threshold to reduce false positives
+
+--- File: file02.json ---
+  Title:
+    - Match: ✓ (similarity: 1.00)
+  Headings:
+    - Ground truth:     17
+    - Extracted:        0
+    - Correctly found:  0
+    - False positives:  0
+    - False negatives:  17
+  Metrics:
+    - Precision: 0.00%
+    - Recall:    0.00%
+    - F1-Score:  0.00%
+  Insights:
+    - Significant headings missed: 17 missed vs 0 found
+    - Missing many decimal-numbered headings (like 1.2)
+  Example missed headings:
+  • "Revision History " (level: H1)
+  • "Table of Contents " (level: H1)
+  • "Acknowledgements " (level: H1)
+  Recommendations:
+    - Improve detection of numbered headings
+
+--- File: file03.json ---
+  Title:
+    - Match: ✓ (similarity: 1.00)
+  Headings:
+    - Ground truth:     39
+    - Extracted:        68
+    - Correctly found:  33
+    - False positives:  35
+    - False negatives:  6
+  Metrics:
+    - Precision: 48.53%
+    - Recall:    84.62%
+    - F1-Score:  61.68%
+  Insights:
+    - Too many false positives: 35 detected vs 6 missed
+    - 33 headings matched text but had wrong level
+  Example false positives:
+  • "Ontario’s Libraries" (level: 2)
+  • "Working Together" (level: 2)
+  • "RFP: R" (level: 1)
+  Example missed headings:
+  • "A Critical Component for Implementing Ontario’s Ro..." (level: H1)
+  • "For the Ontario government it could mean: " (level: H4)
+  • "Appendix A: ODL Envisioned Phases & Funding " (level: H2)
+  Recommendations:
+    - Increase heading score threshold to reduce false positives
+    - Refine heading level assignment logic
+
+--- File: file04.json ---
+  Title:
+    - Match: ✓ (similarity: 1.00)
+  Headings:
+    - Ground truth:     1
+    - Extracted:        6
+    - Correctly found:  1
+    - False positives:  5
+    - False negatives:  0
+  Metrics:
+    - Precision: 16.67%
+    - Recall:    100.00%
+    - F1-Score:  28.57%
+  Insights:
+    - Too many false positives: 5 detected vs 0 missed
+    - 1 headings matched text but had wrong level
+  Example false positives:
+  • "Parsippany -Troy Hills STEM Pathways" (level: 1)
+  • "Mission Statement: To provide PTHSD high school st..." (level: 2)
+  • "Goals:" (level: 3)
+  Recommendations:
+    - Increase heading score threshold to reduce false positives
+    - Refine heading level assignment logic
+
+--- File: file05.json ---
+  Title:
+    - Match: ✓ (similarity: 1.00)
+  Headings:
+    - Ground truth:     1
+    - Extracted:        10
+    - Correctly found:  0
+    - False positives:  10
+    - False negatives:  1
+  Metrics:
+    - Precision: 0.00%
+    - Recall:    0.00%
+    - F1-Score:  0.00%
+  Insights:
+    - Too many false positives: 10 detected vs 1 missed
+  Example false positives:
+  • "ADDRESS:" (level: 1)
+  • "TOPJUMP" (level: 1)
+  • "3735 PARKWAY" (level: 1)
+  Example missed headings:
+  • "HOPE To SEE You THERE! " (level: H1)
+  Recommendations:
+    - Increase heading score threshold to reduce false positives
+
+
+==========================
+=== EVALUATION SUMMARY ===
+==========================
+
+Total Files Evaluated: 5
+Title Accuracy: 80.00%
+
+--- Outline Heading Performance ---
+  - Precision: 38.20%
+  - Recall:    58.62%
+  - F1-Score:  46.26%
+  (34 correct out of 58 ground truth headings)
+
+--- Global Patterns & Issues ---
+  • GLOBAL ISSUE: Model is over-detecting, leading to high false positives.
+  • PATTERN: Model is commonly missing numbered headings (e.g., '1.2 Section').
+
+--- Suggested Optimizations ---
+  • 1. High False Positives: Increase heading score threshold to be more strict.
+  • 3. Missing Numbered Headings: Improve regex for numbered patterns.
+  • 4. Level Mismatches: Refine logic for assigning heading levels (e.g., use font size more effectively).
+
+==========================
+```
+
+
+
 ## 🏗️ Architecture
 
 ```
