@@ -2,20 +2,189 @@
 
 A production-ready system for extracting hierarchical outlines (titles, headings, sub-headings) from complex PDF documents using hybrid ML/rule-based approaches.
 
-## 🎯 Overview
+## Improvised large results :
 
-This system combines:
-- **Layout Analysis**: PyMuPDF for precise text extraction with geometric features
-- **Semantic Understanding**: Quantized MiniLM-L6 for text embeddings (≤25MB)
-- **Classification**: Lightweight MLP for heading/body prediction (≤10kB)  
-- **Post-processing**: Hierarchy repair, noise filtering, and outline optimization
+```bash
+adobe) santhankumar@fedora:~/Desktop/notebooks/Adobe Hackathon$ python new_validate.py ./output ./ground_truths
+2025-07-25 23:13:45,631 - INFO - Found 5 ground truth files. Starting validation...
+================================================================================
+=== PDF STRUCTURE EXTRACTION VALIDATION REPORT ===
+================================================================================
 
-**Key Features:**
-- ✅ CPU-only, runs in ≤200MB Docker container
-- ✅ Processes 50-page PDFs in <10 seconds
-- ✅ Handles multilingual text, complex layouts, edge cases
-- ✅ Production-grade code with comprehensive error handling
-- ✅ Extensive validation and metrics
+--- OVERALL SUMMARY ---
+Files Processed: 5
+Title Accuracy: 40.00%
+Heading Precision: 57.69%
+Heading Recall: 77.59%
+Heading F1-Score: 66.18
+
+--- PER-FILE PERFORMANCE ---
+Filename                  | Title Match  | Precision  | Recall     | F1-Score  
+-------------------------------------------------------------------------------
+file01.json               | ✗            | 0.00       | 0.00       | 0.00      
+file02.json               | ✗            | 68.18      | 88.24      | 76.92     
+file03.json               | ✗            | 63.83      | 76.92      | 69.77     
+file04.json               | ✓            | 0.00       | 0.00       | 0.00      
+file05.json               | ✓            | 0.00       | 0.00       | 0.00      
+
+--- ERROR ANALYSIS & RECOMMENDATIONS ---
+
+Analysis of 13 Missed Headings (False Negatives):
+  - Average Length: 4.4 words / 30.2 characters.
+  - Observed Patterns:
+    - All Caps: 1 (7.7%)
+  > Recommendation: To improve recall, check if the extractor is missing headings with these patterns.
+
+Analysis of 33 Incorrectly Identified Headings (False Positives):
+  - Average Length: 6.2 words / 42.0 characters.
+  - Observed Patterns:
+    - Numbered: 13 (39.4%)
+    - Ends With Punctuation: 4 (12.1%)
+    - All Caps: 4 (12.1%)
+    - Starts Lowercase: 1 (3.0%)
+    - Decimal: 5 (15.2%)
+  > Recommendation: To improve precision, consider adding filters to penalize or ignore text with these patterns.
+
+Analysis of 20 Level Mismatches:
+  - Level 2 was misclassified as 3: 11 time(s)
+  - Level 1 was misclassified as 2: 4 time(s)
+  - Level 4 was misclassified as 3: 4 time(s)
+  - Level 1 was misclassified as 3: 1 time(s)
+  > Recommendation: Review the logic for assigning heading levels, especially for these common misclassifications.
+
+================================================================================
+(adobe) santhankumar@fedora:~/Desktop/notebooks/Adobe Hackathon$ python validation.py ./output ./ground_truths
+
+========================================
+=== FILE-BY-FILE ANALYSIS ===
+========================================
+
+--- File: file01.json ---
+  Title Match: ✗ (Similarity: 26.54%)
+  Heading Counts:
+    - Correctly Found (True Positives):  0
+    - Incorrectly Found (False Positives): 6
+    - Missed (False Negatives):          0
+  Metrics:
+    - Precision: 0.00%
+    - Recall:    0.00%
+    - F1-Score:  0.00%
+  Insights:
+    • Title partially matched with 26.54% similarity
+    • High False Positive Rate: The model is over-detecting headings (6 incorrect vs. 0 missed).
+  Recommendations for Improvement:
+    • Consider increasing the heading score threshold to reduce false positives.
+
+--- File: file02.json ---
+  Title Match: ✗ (Similarity: 36.36%)
+  Heading Counts:
+    - Correctly Found (True Positives):  14
+    - Incorrectly Found (False Positives): 8
+    - Missed (False Negatives):          3
+  Metrics:
+    - Precision: 63.64%
+    - Recall:    82.35%
+    - F1-Score:  71.79%
+  Insights:
+    • Title partially matched with 36.36% similarity
+    • High False Positive Rate: The model is over-detecting headings (8 incorrect vs. 3 missed).
+    • Level Assignment Issue: 12 headings are found but assigned the wrong level.
+  Analysis of 3 Missed Headings:
+    - Average Length: 33.3 chars, 4.3 words
+    - Common patterns observed in missed headings:
+      • Numbered: 1 instance(s)
+      • Capitalized: 2 instance(s)
+  Recommendations for Improvement:
+    • Consider increasing the heading score threshold to reduce false positives.
+    • Improve detection logic for numbered headings (e.g., '1.2 Section').
+    • Refine heading level assignment logic, possibly using font size more aggressively.
+
+--- File: file03.json ---
+  Title Match: ✗ (Similarity: 19.05%)
+  Heading Counts:
+    - Correctly Found (True Positives):  29
+    - Incorrectly Found (False Positives): 18
+    - Missed (False Negatives):          10
+  Metrics:
+    - Precision: 61.70%
+    - Recall:    74.36%
+    - F1-Score:  67.44%
+  Insights:
+    • Title not correctly identified
+    • High False Positive Rate: The model is over-detecting headings (18 incorrect vs. 10 missed).
+    • Level Assignment Issue: 6 headings are found but assigned the wrong level.
+  Analysis of 10 Missed Headings:
+    - Average Length: 33.7 chars, 5.0 words
+    - Common patterns observed in missed headings:
+      • Capitalized: 10 instance(s)
+  Recommendations for Improvement:
+    • Consider increasing the heading score threshold to reduce false positives.
+    • Refine heading level assignment logic, possibly using font size more aggressively.
+
+--- File: file04.json ---
+  Title Match: ✓ (Similarity: 100.00%)
+  Heading Counts:
+    - Correctly Found (True Positives):  0
+    - Incorrectly Found (False Positives): 1
+    - Missed (False Negatives):          1
+  Metrics:
+    - Precision: 0.00%
+    - Recall:    0.00%
+    - F1-Score:  0.00%
+  Analysis of 1 Missed Headings:
+    - Average Length: 15.0 chars, 2.0 words
+    - Common patterns observed in missed headings:
+      • All caps: 1 instance(s)
+      • Capitalized: 1 instance(s)
+  Recommendations for Improvement:
+    • Enhance detection of ALL CAPS headings.
+
+--- File: file05.json ---
+  Title Match: ✓ (Similarity: 100.00%)
+  Heading Counts:
+    - Correctly Found (True Positives):  0
+    - Incorrectly Found (False Positives): 2
+    - Missed (False Negatives):          1
+  Metrics:
+    - Precision: 0.00%
+    - Recall:    0.00%
+    - F1-Score:  0.00%
+  Insights:
+    • High False Positive Rate: The model is over-detecting headings (2 incorrect vs. 1 missed).
+  Analysis of 1 Missed Headings:
+    - Average Length: 22.0 chars, 5.0 words
+    - Common patterns observed in missed headings:
+      • Capitalized: 1 instance(s)
+  Recommendations for Improvement:
+    • Consider increasing the heading score threshold to reduce false positives.
+
+
+========================================
+=== OVERALL PERFORMANCE & SUGGESTIONS ===
+========================================
+
+Processed 5 files.
+Overall Title Accuracy: 40.00%
+Overall Heading Metrics:
+  - Precision: 55.13%
+  - Recall:    74.14%
+  - F1-Score:  63.24%
+
+Key Areas for Algorithmic Improvement:
+  • Consider increasing the heading score threshold to reduce false positives. (Suggested for 4 file(s))
+  • Refine heading level assignment logic, possibly using font size more aggressively. (Suggested for 2 file(s))
+  • Improve detection logic for numbered headings (e.g., '1.2 Section'). (Suggested for 1 file(s))
+  • Enhance detection of ALL CAPS headings. (Suggested for 1 file(s))
+
+========================================
+(adobe) santhankumar@fedora:~/Desktop/notebooks/Adobe Hackathon$ 
+```
+
+
+
+
+
+
 
 
 ```bash
