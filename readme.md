@@ -2,7 +2,7 @@
 
 A production-ready system for extracting hierarchical outlines (titles, headings, sub-headings) from complex PDF documents using hybrid ML/rule-based approaches.
 
-## Improvised large results :
+## Improvised large results (Best score so far, after updated_processor.py):
 
 ```bash
 adobe) santhankumar@fedora:~/Desktop/notebooks/Adobe Hackathon$ python new_validate.py ./output ./ground_truths
